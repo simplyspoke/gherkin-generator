@@ -1,0 +1,25 @@
+{
+  "name": "contemplated",
+  "version": "0.0.1",
+  "description": "A well thought out template created for the files you need.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ./"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/simplyspoke/contemplated.git"
+  },
+  "keywords": [
+    "command-line",
+    "generator",
+    "nodejs"
+  ],
+  "author": "Tristan Fitzgerald",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/simplyspoke/contemplated/issues"
+  },
+  "homepage": "https://github.com/simplyspoke/contemplated#readme"
+}
