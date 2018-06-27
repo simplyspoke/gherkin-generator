@@ -2,11 +2,11 @@
   "name": "contemplated",
   "version": "0.0.1",
   "description": "A well thought out template created for the files you need.",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node ./"
-  },
+  "main": "dist/contemplated.js",
+  "typings": "dist/contemplated.d.ts",
+  "files": [
+    "dist"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/simplyspoke/contemplated.git"
@@ -21,5 +21,62 @@
   "bugs": {
     "url": "https://github.com/simplyspoke/contemplated/issues"
   },
-  "homepage": "https://github.com/simplyspoke/contemplated#readme"
+  "homepage": "https://github.com/simplyspoke/contemplated#readme",
+  "scripts": {
+    "lint": "tslint -t codeFrame 'src/**/*.ts' 'test/**/*.ts'",
+    "prebuild": "rimraf dist",
+    "build": "webpack --mode production && typedoc --out docs --target es6 --theme minimal --mode file src",
+    "start": "webpack --mode development --display-error-details --watch",
+    "test": "jest",
+    "test:watch": "jest --watchAll",
+    "commit": "git-cz",
+    "commitmsg": "validate-commit-msg",
+    "precommit": "lint-staged",
+    "semantic-release": "semantic-release",
+    "report-coverage": "cat ./coverage/lcov.info | coveralls",
+    "docs:deploy": "ts-node scripts/docs.deploy"
+  },
+  "lint-staged": {
+    "{scripts,src}/**/*.ts": [
+      "prettier --write --single-quote",
+      "git add"
+    ]
+  },
+  "config": {
+    "commitizen": {
+      "path": "node_modules/cz-conventional-changelog"
+    },
+    "validate-commit-msg": {
+      "types": "conventional-commit-types",
+      "helpMessage": "Use \"npm run commit\" instead, we use conventional-changelog format :) (https://github.com/commitizen/cz-cli)"
+    }
+  },
+  "devDependencies": {
+    "@types/fs-extra": "^5.0.3",
+    "@types/jest": "^23.1.2",
+    "@types/node": "^10.3.6",
+    "@types/shelljs": "^0.8.0",
+    "coveralls": "^3.0.1",
+    "cz-conventional-changelog": "^2.1.0",
+    "dts-bundle": "^0.7.3",
+    "fs-extra": "^6.0.1",
+    "husky": "^1.0.0-rc.9",
+    "jest": "^23.2.0",
+    "lint-staged": "^7.2.0",
+    "prettier": "^1.13.6",
+    "rimraf": "^2.6.2",
+    "semantic-release": "^15.6.0",
+    "shelljs": "^0.8.2",
+    "ts-jest": "^22.4.6",
+    "ts-loader": "^4.4.1",
+    "ts-node": "^7.0.0",
+    "tslint": "^5.10.0",
+    "tslint-config-prettier": "^1.13.0",
+    "tslint-config-standard": "^7.1.0",
+    "typedoc": "^0.11.1",
+    "typescript": "^2.9.2",
+    "validate-commit-msg": "^2.14.0",
+    "webpack": "^4.12.1",
+    "webpack-cli": "^3.0.8"
+  }
 }
