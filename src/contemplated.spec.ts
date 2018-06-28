@@ -17,7 +17,7 @@ describe('Contemplated', () => {
     contemplated.createTemplate(template);
     contemplated.validate(variables);
 
-    expect(contemplated.process(variables, template)).toEqual(
+    expect(contemplated.process(variables)).toEqual(
       'This is an important test, it is success!'
     );
   });
