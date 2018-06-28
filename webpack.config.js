@@ -5,7 +5,7 @@ const libraryName = 'contemplated';
 
 module.exports = {
   entry: {
-    index: `./src/${libraryName}.ts`
+    [libraryName]: `./src/${libraryName}.ts`,
   },
   devtool: 'inline-source-map',
   target: 'node',

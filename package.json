@@ -52,6 +52,7 @@
     }
   },
   "devDependencies": {
+    "@types/escape-string-regexp": "0.0.32",
     "@types/fs-extra": "^5.0.3",
     "@types/jest": "^23.1.2",
     "@types/node": "^10.3.6",
@@ -78,5 +79,12 @@
     "validate-commit-msg": "^2.14.0",
     "webpack": "^4.12.1",
     "webpack-cli": "^3.0.8"
+  },
+  "dependencies": {
+    "chalk": "^2.4.1",
+    "escape-string-regexp": "^1.0.5"
+  },
+  "engines": {
+    "node": ">=8.10.0"
   }
 }
