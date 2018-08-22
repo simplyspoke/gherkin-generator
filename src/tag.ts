@@ -16,7 +16,6 @@ export class Tag {
   constructor({ prefix, suffix }: TagConfig) {
     this.prefix = prefix;
     this.suffix = suffix;
-
     this.setPattern();
   }
 

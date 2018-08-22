@@ -40,14 +40,18 @@ export class Contemplated {
    * @throws An error if the template is invalid.
    */
   validate(variables: { [key: string]: any }) {
+    let errorMessage: string;
     this.template.validate(variables);
 
     if (this.template.status === TemplateStates.Invalid) {
-      if (this.template.errors.missing.length > 0) {
-        console.error(`The template is invalid. The variables for the following tags were not found:\n
-          ${this.template.errors.missing.join('\n')}`);
+      if (this.template.errors.noVariables) {
+        errorMessage = 'A template must have at least one tag to be valid.';
       }
-      throw new Error('Cannot process template.');
+      if (this.template.errors.missing.length > 0) {
+        errorMessage = `The template is invalid. The variables for the following tags were not found:\n
+          ${this.template.errors.missing.join('\n')}`;
+      }
+      throw new Error(`${errorMessage} Cannot process template.`);
     }
   }
 
