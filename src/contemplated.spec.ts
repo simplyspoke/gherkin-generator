@@ -32,6 +32,19 @@ describe('Contemplated', () => {
 
     expect(() => {
       contemplated.validate(variables);
-    }).toThrow('Cannot process template.');
+    }).toThrow();
+  });
+
+  it('should throw an error if no tags are found inside of the template', () => {
+    const variables = {
+      priority: 'important'
+    };
+    const template = 'This is an priority test, it is results!';
+
+    contemplated.createTemplate(template);
+
+    expect(() => {
+      contemplated.validate(variables);
+    }).toThrow();
   });
 });

@@ -2,6 +2,7 @@ import { Tag } from './tag';
 
 interface TemplateErrors {
   missing?: string[];
+  noVariables?: boolean;
 }
 
 export enum TemplateStates {
@@ -32,8 +33,15 @@ export class Template {
   }
 
   private addVariablesToSet() {
-    this.template
-      .match(this.tag.pattern)
+    const tagStrings = this.template.match(this.tag.pattern);
+
+    if (tagStrings === null) {
+      this.status = TemplateStates.Invalid;
+      this.errors.noVariables = true;
+      return;
+    }
+
+    tagStrings
       .map(tagString => {
         return this.tag.getTagName(tagString);
       })
@@ -43,6 +51,10 @@ export class Template {
   }
 
   validate(variables: { [key: string]: any }) {
+    if (this.status === TemplateStates.Invalid) {
+      return;
+    }
+
     this.status = TemplateStates.Pending;
 
     this.tags.forEach(value => {
